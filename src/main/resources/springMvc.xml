@@ -10,8 +10,7 @@
     <context:component-scan base-package="com.andon.controller" />
     <!-- 替我们处理了最新版的处理器映射器核处理器适配器-->
     <mvc:annotation-driven />
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
