@@ -7,12 +7,27 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.andon.controller" />
-    <!-- 替我们处理了最新版的处理器映射器核处理器适配器-->
-    <mvc:annotation-driven />
+    <context:component-scan base-package="com.andon.controller,com.andon.intercepter,com.andon.exception" />
+    <!-- 替我们处理了最新版的处理器映射器和处理器适配器-->
+    <mvc:annotation-driven/>
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="209715200" />
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="resolveLazily" value="true" />
+    </bean>
+    <!--配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 要拦截所有请求 必须配置成/**-->
+            <mvc:mapping path="/**"/>
+            <!-- 指定拦截器的位置-->
+            <bean id="Firstintercepter" class="com.andon.intercepter.Firstintercepter"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
