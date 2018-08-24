@@ -100,4 +100,5 @@ public class FirstController {
         int a =Integer.parseInt(str);
         return student;
     }
+
 }

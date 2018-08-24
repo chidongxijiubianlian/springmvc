@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.andon.mapper.UserMapper">
-    <select id="GetUser" resultType="com.andon.pojo.User">
+    <select id="GetUsers" resultType="com.andon.pojo.User">
         select * from test_user
+    </select>
+    <select id="GetUser" parameterType="java.lang.String" resultType="com.andon.pojo.User">
+        select * from test_user where hguid =#{0} and name=#{1}
+    </select>
+    <!-- 当传入参数是基本类型时，占位符里可以写任意字符，拼接符里必须直接写value-->
+    <select id="GetUserByName" parameterType="java.lang.String" resultType="com.andon.pojo.User">
+        select * from test_user where name LIKE concat(concat('%',#{namessss}),'%')
+    </select>
+    <!-- 传入参数是一个对象，在占位符里直接用#{} 大括号里直接写对象的属性-->
+    <select id="GetUserByPojo" parameterType="com.andon.pojo.User" resultType="com.andon.pojo.User">
+        select * from test_user where hguid =#{hguid}
+    </select>
+    <!-- where foreach属于动态sql标签-->
+    <select id="GetUserByUserIDs" parameterType="com.andon.pojo.User" resultType="com.andon.pojo.User">
+        select * from test_user
+        <where>
+            <choose>
+                <when test="list !=null and list.size >0">
+                    <foreach collection="list" separator="," open="id in (" close=")" item="user">
+                        #{user.id}
+                    </foreach>
+                </when>
+                <otherwise>
+                    1=0
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+    <select id="GetUserDevice" resultType="com.andon.pojo.UserDevice">
+        select a.id,b.phone,c.deviceID from test_user_device as a LEFT JOIN test_user as b on a.uid =b.id LEFT JOIN test_device as c on a.did =c.id
     </select>
 </mapper>
