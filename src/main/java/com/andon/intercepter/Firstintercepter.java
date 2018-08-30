@@ -15,7 +15,7 @@ public class Firstintercepter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         Map<String,String[]> hashMap = httpServletRequest.getParameterMap();
-        System.out.println("=======这是一个执行前执行的方法=======");
+        System.out.println("=======拦截器:这是一个执行前执行的方法=======");
         HttpSession session = httpServletRequest.getSession();
         String sid = String.valueOf(session.getAttribute("sid"));
         if(sid !=null)
@@ -27,11 +27,11 @@ public class Firstintercepter implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        System.out.println("=======这是一个执行中执行的方法=======");
+        System.out.println("=======拦截器:这是一个执行中执行的方法=======");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-        System.out.println("=======这是一个执行后执行的方法=======");
+        System.out.println("=======拦截器:这是一个执行后执行的方法=======");
     }
 }

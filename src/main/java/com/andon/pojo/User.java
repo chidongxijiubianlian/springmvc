@@ -1,10 +1,13 @@
 package com.andon.pojo;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 public class User {
-    //用户ID 自增
-    private Integer id;
+    private String id;
     //用户唯一标识
     private String hguid;
     //手机号
@@ -16,11 +19,11 @@ public class User {
     //创建时间
     private Date createdate;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -73,7 +73,7 @@ public class FirstController {
     }
     @ResponseBody//此注解指的是不返回页面
     @RequestMapping("/ApplicationJson")
-    //接收contentType为www-urlencode @RequestBody为解析json的解析器 记得加jar包:jackson-databind
+    //接收contentType为applicationJson @RequestBody为解析json的解析器 记得加jar包:jackson-databind
     public Object getApplicationJson(@RequestBody Student student)
     {
         return student;
@@ -81,8 +81,9 @@ public class FirstController {
     @ResponseBody//此注解指的是不返回页面
     @RequestMapping("/Binary")
     //接收contentType为binary
-    public Object getBinary(@RequestBody MultipartFile file) throws Exception
+    public Object getBinary(MultipartFile file,MultipartFile file1,User user) throws Exception
     {
+        System.out.println(user);
         byte[] bytes = new byte[(int)file.getSize()];
         InputStream stream = file.getInputStream();
         stream.read(bytes,0,bytes.length);//一次性读出来不考虑性能
