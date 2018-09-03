@@ -5,6 +5,7 @@ import com.andon.pojo.User;
 import com.andon.pojo.UserDevice;
 import com.andon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-public class SqlController {
+public class MybatisController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     @RequestMapping("/sqlTest")
     @ResponseBody
     public Object getSql(@RequestBody User user)
