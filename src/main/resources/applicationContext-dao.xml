@@ -29,7 +29,7 @@
         <!-- 数据库连接池 -->
         <property name="dataSource" ref="dataSource" />
         <!-- 加载mybatis的全局配置文件 -->
-        <property name="configLocation" value="classpath:sqlMapConfig.xml" />
+        <property name="configLocation" value="classpath:mybatis.xml" />
     </bean>
     <!--通過Mapper映射  -->
     <!--  <bean id="items" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -41,6 +41,9 @@
         <!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
         <property name="basePackage" value="com.andon.mapper"></property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
     </bean>
 
 

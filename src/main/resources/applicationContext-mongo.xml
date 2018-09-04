@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 		http://www.springframework.org/schema/data/mongo
         http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
-<!--扫描数据库信息  -->
+    <!--扫描数据库信息  -->
     <context:property-placeholder location="classpath:mongo.properties" ignore-unresolvable="true"/>
     <!-- 定义mongo对象，对应的是mongodb官方jar包中的Mongo，replica-set设置集群副本的ip地址和端口 -->
     <mongo:mongo id="mongo" replica-set="${mongo.hostport}">
